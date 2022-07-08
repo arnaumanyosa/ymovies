@@ -23,13 +23,15 @@
 </div>
 
 <div class="content" role="main">
-  <input
-    #movieFilter
-    *ngIf="movies.length > 0"
-    placeholder="Filter"
-    (keyup)="onKeyUp(movieFilter.value)"
-  />
-  <button (click)="addMovie()">Add Movie</button>
+  <mat-form-field *ngIf="movies.length > 0">
+    <mat-label>Filter</mat-label>
+    <input
+      matInput
+      placeholder="Ex. Empire Strives Back"
+      #movieFilter
+      (keyup)="onKeyUp(movieFilter.value)"
+    />
+  </mat-form-field>
   <app-movie-list [movies]="movies" [filter]="movieFilter"></app-movie-list>
 </div>
 

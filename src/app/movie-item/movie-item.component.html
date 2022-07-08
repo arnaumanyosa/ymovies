@@ -3,6 +3,6 @@
   <div class="movie-item-year">{{ movie.year }}</div>
   <div class="movie-item-actoractress">{{ movie.actorActress }}</div>
   <div class="movie-item-rating">
-    {{ movie.rating == undefined ? "-" : "10" }}
+    {{ movie.rating == undefined ? "-" : movie.rating + "/10" }}
   </div>
 </div>
