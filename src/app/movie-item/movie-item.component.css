@@ -1,0 +1,22 @@
+.movie-item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.movie-item-title {
+  flex: 1 0 30%;
+}
+
+.movie-item-year {
+  flex: 0 0 10%;
+}
+.movie-item-actoractress {
+  flex: 0 0 20%;
+}
+.movie-item-rating {
+  flex: 0 0 10%;
+  display: flex;
+  justify-content: center;
+}

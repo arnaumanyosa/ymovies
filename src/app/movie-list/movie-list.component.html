@@ -1,0 +1,12 @@
+<!-- <p>movie-list works!</p> -->
+
+<div *ngIf="movieList.length > 0; then movies; else noMovies"></div>
+
+<ng-template #movies>
+  <ul class="no-list-style">
+    <li *ngFor="let movie of movieList | movieFilter: filter">
+      <app-movie-item [movie]="movie"></app-movie-item>
+    </li>
+  </ul>
+</ng-template>
+<ng-template #noMovies>No movies available</ng-template>

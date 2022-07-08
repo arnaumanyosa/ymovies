@@ -1,0 +1,8 @@
+<div class="movie-item-container" (click)="onClick($event)">
+  <div class="movie-item-title">{{ movie.title }}</div>
+  <div class="movie-item-year">{{ movie.year }}</div>
+  <div class="movie-item-actoractress">{{ movie.actorActress }}</div>
+  <div class="movie-item-rating">
+    {{ movie.rating == undefined ? "-" : "10" }}
+  </div>
+</div>
