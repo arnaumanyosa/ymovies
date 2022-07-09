@@ -1,10 +1,17 @@
-<!-- <p>movie-list works!</p> -->
+<div *ngIf="movies.length > 0; then movieList; else noMovies"></div>
 
-<div *ngIf="movieList.length > 0; then movies; else noMovies"></div>
-
-<ng-template #movies>
+<ng-template #movieList>
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input
+      matInput
+      placeholder="Ex. Empire Strives Back"
+      #movieFilter
+      (keyup)="onKeyUp(movieFilter.value)"
+    />
+  </mat-form-field>
   <ul class="no-list-style">
-    <li *ngFor="let movie of movieList | movieFilter: filter">
+    <li *ngFor="let movie of movies | movieFilter: filter">
       <app-movie-item [movie]="movie"></app-movie-item>
     </li>
   </ul>

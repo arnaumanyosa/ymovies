@@ -14,6 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { RatingDialogComponent } from './rating-dialog/rating-dialog.component';
+import { AddMovieComponent } from './add-movie/add-movie.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { RatingDialogComponent } from './rating-dialog/rating-dialog.component';
     MovieItemComponent,
     MovieListFilterPipe,
     RatingDialogComponent,
+    AddMovieComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

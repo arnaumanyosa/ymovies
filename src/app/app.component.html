@@ -3,19 +3,17 @@
   <span>{{ title }}</span>
   <div class="spacer"></div>
   <a
+    class="nav-link"
     aria-label="List of Movies"
-    target="_blank"
-    rel="noopener"
-    href=""
+    routerLink=""
     title="List of Movies"
   >
     List
   </a>
   <a
+    class="nav-link"
     aria-label="Add Movie"
-    target="_blank"
-    rel="noopener"
-    href=""
+    routerLink="addmovie"
     title="Add Movie"
   >
     Add
@@ -23,16 +21,5 @@
 </div>
 
 <div class="content" role="main">
-  <mat-form-field *ngIf="movies.length > 0">
-    <mat-label>Filter</mat-label>
-    <input
-      matInput
-      placeholder="Ex. Empire Strives Back"
-      #movieFilter
-      (keyup)="onKeyUp(movieFilter.value)"
-    />
-  </mat-form-field>
-  <app-movie-list [movies]="movies" [filter]="movieFilter"></app-movie-list>
+  <router-outlet></router-outlet>
 </div>
-
-<router-outlet></router-outlet>

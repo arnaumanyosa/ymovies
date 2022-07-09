@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Movie } from '../types';
-import { MovieItemComponent } from '../movie-item/movie-item.component';
+import { MoviesService } from '../movies.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -9,13 +9,35 @@ import { MovieItemComponent } from '../movie-item/movie-item.component';
   styleUrls: ['./movie-list.component.css'],
 })
 export class MovieListComponent implements OnInit {
-  @Input('movies') movieList: Movie[];
-  @Input('filter') filter: string;
+  filter: string;
+  movies: Movie[];
 
-  constructor() {
-    this.movieList = [];
+  constructor(private moviesService: MoviesService) {
+    this.movies = [];
     this.filter = '';
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.moviesService.getMovies().subscribe(
+      (response) => {
+        this.movies = response;
+      },
+      (error: Error) => {
+        console.log('GetMovies', error);
+      }
+    );
+  }
+
+  onKeyUp(filter: string) {
+    this.filter = filter.toLowerCase();
+  }
+
+  // addMovie() {
+  //   this.movies.push({
+  //     title: 'another movie',
+  //     year: '2022',
+  //     actorActress: 'xxx',
+  //     rating: undefined,
+  //   });
+  // }
 }
