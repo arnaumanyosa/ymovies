@@ -11,7 +11,7 @@ export class MovieListFilterPipe implements PipeTransform {
     return items.filter(
       (item) =>
         item.title.toLowerCase().indexOf(filter) !== -1 ||
-        item.actorActress.toLowerCase().indexOf(filter) !== -1
+        item.actorActress.name.toLowerCase().indexOf(filter) !== -1
     );
   }
 }

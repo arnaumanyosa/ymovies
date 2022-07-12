@@ -1,33 +1,42 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 
-import { Movie } from './types';
+import { Movie, Person } from './types';
+import movies from '../assets/fake-data/movies.json';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MoviesService {
-  constructor(private http: HttpClient) {}
+  movies: Movie[];
 
-  getMovies(): Observable<Movie[]> {
-    return this.http
-      .get<Movie[]>('assets/fake-data/movies.json')
-      .pipe(catchError(this.handleError));
+  constructor() {
+    this.movies = movies.data.map((movie) => {
+      return {
+        title: movie.title,
+        year: movie.year,
+        actorActress: { name: movie.actorActress },
+        rating: undefined,
+      };
+    });
   }
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.status === 0) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
-      console.error(
-        `Backend returned code ${error.status}, body was: `,
-        error.error
-      );
-    }
+  getMovies(): Observable<Movie[]> {
+    return new Observable((observer) => {
+      try {
+        observer.next(this.movies);
+        observer.complete();
+      } catch (error) {
+        observer.error(this.handleError);
+      }
+    });
+  }
+
+  addMovie(movie: Movie): void {
+    this.movies = [...this.movies, movie];
+  }
+
+  private handleError(error: Error) {
     // Return an observable with a user-facing error message.
     return throwError(
       () => new Error('Something bad happened; please try again later.')

@@ -18,26 +18,14 @@ export class MovieListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.moviesService.getMovies().subscribe(
-      (response) => {
-        this.movies = response;
-      },
-      (error: Error) => {
-        console.log('GetMovies', error);
-      }
-    );
+    this.moviesService.getMovies().subscribe({
+      next: (response) => (this.movies = response),
+      error: (e) => console.error(e),
+      complete: () => console.info('movie list loaded'),
+    });
   }
 
   onKeyUp(filter: string) {
     this.filter = filter.toLowerCase();
   }
-
-  // addMovie() {
-  //   this.movies.push({
-  //     title: 'another movie',
-  //     year: '2022',
-  //     actorActress: 'xxx',
-  //     rating: undefined,
-  //   });
-  // }
 }

@@ -1,1 +1,11 @@
-<p>add-movie works!</p>
+<div class="form-wrapper">
+  <form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+    <formly-form
+      [model]="model"
+      [fields]="fields"
+      [options]="options"
+      [form]="form"
+    ></formly-form>
+    <button type="submit" mat-flat-button color="primary">Add Movie</button>
+  </form>
+</div>
