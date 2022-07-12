@@ -12,7 +12,12 @@ export class MovieItemComponent implements OnInit {
   @Input('movie') movie: Movie;
 
   constructor(public dialog: MatDialog) {
-    this.movie = {} as Movie;
+    this.movie = {
+      title: '',
+      year: '',
+      actorActress: { name: '' },
+      rating: undefined,
+    };
   }
 
   ngOnInit(): void {}

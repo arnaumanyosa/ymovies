@@ -24,8 +24,10 @@ export class MoviesService {
   getMovies(): Observable<Movie[]> {
     return new Observable((observer) => {
       try {
-        observer.next(this.movies);
-        observer.complete();
+        setTimeout(() => {
+          observer.next(this.movies);
+          observer.complete();
+        }, 1000);
       } catch (error) {
         observer.error(this.handleError);
       }

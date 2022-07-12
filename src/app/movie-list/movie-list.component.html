@@ -1,6 +1,4 @@
-<div *ngIf="movies.length > 0; then movieList; else noMovies"></div>
-
-<ng-template #movieList>
+<!-- <div *ngIf="movies$ | async as movies; else moviesLoading">
   <mat-form-field>
     <mat-label>Filter</mat-label>
     <input
@@ -15,5 +13,45 @@
       <app-movie-item [movie]="movie"></app-movie-item>
     </li>
   </ul>
-</ng-template>
-<ng-template #noMovies>No movies available</ng-template>
+</div> -->
+<!-- <div *ngIf="movies.length > 0; then movieList; else noMovies"></div> -->
+
+<!-- <ng-template #movieList>
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input
+      matInput
+      placeholder="Ex. Empire Strives Back"
+      #movieFilter
+      (keyup)="onKeyUp(movieFilter.value)"
+    />
+  </mat-form-field>
+  <ul class="no-list-style">
+    <li *ngFor="let movie of movies | movieFilter: filter">
+      <app-movie-item [movie]="movie"></app-movie-item>
+    </li>
+  </ul>
+</ng-template> -->
+<!-- <ng-template #noMovies>No movies available</ng-template>
+<ng-template #moviesLoading>Loading Movies...</ng-template> -->
+
+<ng-container *ngIf="movies$ | async as movies">
+  <div *ngIf="movies.isLoading">Loading Movies...</div>
+  <div *ngIf="movies.error">{{ movies.error }}</div>
+  <div *ngIf="movies.data">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input
+        matInput
+        placeholder="Ex. Empire Strives Back"
+        #movieFilter
+        (keyup)="onKeyUp(movieFilter.value)"
+      />
+    </mat-form-field>
+    <ul class="no-list-style">
+      <li *ngFor="let movie of movies.data | movieFilter: filter">
+        <app-movie-item [movie]="movie"></app-movie-item>
+      </li>
+    </ul>
+  </div>
+</ng-container>
